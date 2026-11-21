@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Keep the Heat: a tiny sauna stove game</title>
+<meta name="description" content="Keep the Heat is a free browser game about tending a wood-fired sauna stove. Add logs, throw water on the stones, keep the room in the zone. Works on phones, no sign-up, no ads.">
+<link rel="canonical" href="https://divelux.github.io/keep-the-heat-game/">
+<meta name="theme-color" content="#f6f3ee">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DIVELUX">
+<meta property="og:title" content="Keep the Heat: a sauna stove game">
+<meta property="og:description" content="Add logs, throw water on the stones, keep the sauna in the zone for one round. A 90-second game for your phone or desktop.">
+<meta property="og:url" content="https://divelux.github.io/keep-the-heat-game/">
+<meta property="og:image" content="https://divelux.github.io/keep-the-heat-game/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Keep the Heat",
+  "url": "https://divelux.github.io/keep-the-heat-game/",
+  "description": "A short browser game about tending a wood-fired sauna stove: add logs and throw water on the stones to keep the room in the zone for one round.",
+  "genre": "Casual",
+  "gamePlatform": "Web browser",
+  "playMode": "SinglePlayer",
+  "applicationCategory": "Game",
+  "operatingSystem": "Any",
+  "isAccessibleForFree": true,
+  "inLanguage": "en-US",
+  "license": "https://opensource.org/licenses/MIT",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "DIVELUX", "url": "https://diveluxsaunahat.com" },
+  "publisher": { "@type": "Organization", "name": "DIVELUX", "url": "https://diveluxsaunahat.com" }
+}
+</script>
+</head>
+<body class="dvx">
+<a class="dvx-skip" href="#game">Skip to the game</a>
+
+<header class="dvx-wrap dvx-bar">
+  <a href="https://diveluxsaunahat.com" aria-label="DIVELUX home"><img src="assets/logo-dark.png" width="901" height="127" alt="DIVELUX"></a>
+  <a href="https://diveluxsaunahat.com/pages/sauna-tools">More free sauna tools</a>
+</header>
+
+<main>
+  <div class="dvx-wrap dvx-hero kth-hero">
+    <h1>Keep the Heat</h1>
+    <p class="dvx-lead">You are tending a wood-fired sauna stove. Add logs, throw water on the stones, and keep the room in the zone until the round is over.</p>
+  </div>
+
+  <section class="dvx-wrap kth-game" id="game" aria-labelledby="kth-h">
+    <h2 class="dvx-sr" id="kth-h">Game</h2>
+    <dl class="kth-hud">
+      <div><dt>Room</dt><dd data-o="temp">122 °F</dd></div>
+      <div><dt>Time left</dt><dd data-o="time">1:30</dd></div>
+      <div><dt>Score</dt><dd data-o="score">0</dd></div>
+      <div><dt>Best</dt><dd data-o="best">0</dd></div>
+    </dl>
+    <div class="kth-stage">
+      <canvas id="kth-canvas" width="720" height="480" role="img" aria-label="A sauna stove with a fire, a pile of stones and a thermometer showing the room temperature and the target zone."></canvas>
+      <div class="kth-over" data-o="over">
+        <p class="kth-over-h" data-o="overh">Ready when you are</p>
+        <p class="kth-over-p" data-o="overp">Keep the thermometer in the green zone. Logs heat the stones slowly; water on hot stones in the zone scores a bonus. Over 212 °F is too hot.</p>
+        <button type="button" class="dvx-btn dvx-btn--go" data-a="start">Start the round</button>
+      </div>
+    </div>
+    <div class="kth-ctrl">
+      <button type="button" class="dvx-btn kth-big" data-a="log" aria-keyshortcuts="L ArrowUp" disabled>Add a log <kbd>L</kbd></button>
+      <button type="button" class="dvx-btn kth-big" data-a="ladle" aria-keyshortcuts="W Space" disabled>Throw water <kbd>W</kbd></button>
+    </div>
+    <div class="dvx-actions kth-small">
+      <button type="button" class="dvx-btn" data-a="pause" aria-keyshortcuts="P" disabled>Pause</button>
+      <button type="button" class="dvx-btn" data-a="sound" aria-pressed="false">Sound: off</button>
+      <button type="button" class="dvx-btn" data-a="units" aria-pressed="false">Show °C</button>
+    </div>
+    <p class="dvx-sr" role="status" aria-live="polite" data-o="live"></p>
+    <p class="dvx-hint kth-note">Keys: L or Up arrow adds a log, W or Space throws water, P pauses. The best score is kept only in this browser.</p>
+  </section>
+
+  <section class="dvx-wrap dvx-method" aria-labelledby="how-h">
+    <h2 class="dvx-h" id="how-h">How to play</h2>
+    <ol>
+      <li><strong>One round is 90 seconds.</strong> You score 10 points for every second the room is in the green zone, 167–194 °F (75–90 °C) in the game.</li>
+      <li><strong>Logs are slow.</strong> A log takes a while to heat the stones, and the stones take a while to heat the room. The firebox holds three logs.</li>
+      <li><strong>Water is quick.</strong> Throwing water on hot stones takes some heat out of them and makes steam. A throw while the room is in the zone is worth 25 points.</li>
+      <li><strong>Watch the door.</strong> Now and then someone comes in and the room cools a little.</li>
+      <li><strong>The round ends three ways.</strong> The clock runs out (100 bonus points), the fire dies and the room goes cold, or the room stays over 212 °F (100 °C) for 4 seconds and the stove overheats.</li>
+    </ol>
+    <p>The zone is a game setting, not advice on how hot your sauna should be. The one real-world number is the top line: the Harvia wood stove manual says "a good rule of thumb is that temperatures of over 100 ºC are too high in a sauna" (<a href="https://saunamarketplace.com/wp-content/uploads/2022/11/Harvia-M3-Manual.pdf">Harvia manual, section 2.5</a>, PDF). When the round ends, the game tells you what a real session does at that point: step out and cool off.</p>
+    <p class="dvx-callout">Not medical advice. A real stove is not a toy: follow your stove's manual for how much wood to burn, and never leave a fire unattended. If you feel unwell in a sauna, step out.</p>
+    <p>No ads, no tracking, no network requests: the whole game is four small files. The code is open source under the MIT license.</p>
+  </section>
+</main>
+
+<footer class="dvx-foot">
+  <div class="dvx-wrap">
+    <p><strong>Made by DIVELUX</strong>, handmade wool sauna hats.</p>
+    <p><a href="https://diveluxsaunahat.com">diveluxsaunahat.com</a> · <a href="https://diveluxsaunahat.com/pages/sauna-tools">More free sauna tools</a></p>
+    <p>Keep the Heat is free and open source under the MIT License. © 2026 DIVELUX Inc.</p>
+  </div>
+</footer>
+
+<script src="game.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
